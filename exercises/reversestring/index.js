@@ -29,30 +29,30 @@ function reverse(str) {
   // for right (end of result), char @ left mid index - iterator
 
   // get the middle chars
-  const halfLength = str.length / 2;
-  const floor = Math.floor(halfLength);
-  let leftMidIndex, rightMidIndex, result, loopLength;
-  if (floor < halfLength) {
-    // length is odd
-    leftMidIndex = floor;
-    rightMidIndex = floor;
-    result = str[floor];
-    loopLength = floor;
-  } else {
-    // length is even
-    leftMidIndex = floor - 1;
-    rightMidIndex = floor;
-    result = str[rightMidIndex] + str[leftMidIndex];
-    loopLength = floor - 1;
-  }
-
-  for (var i = 1; i <= loopLength; i++) {
-    const beforeResult = str[rightMidIndex + i];
-    const afterResult = str[leftMidIndex - i];
-    result = beforeResult + result + afterResult;
-  }
-
-  return result;
+  // const halfLength = str.length / 2;
+  // const floor = Math.floor(halfLength);
+  // let leftMidIndex, rightMidIndex, result, loopLength;
+  // if (floor < halfLength) {
+  //   // length is odd
+  //   leftMidIndex = floor;
+  //   rightMidIndex = floor;
+  //   result = str[floor];
+  //   loopLength = floor;
+  // } else {
+  //   // length is even
+  //   leftMidIndex = floor - 1;
+  //   rightMidIndex = floor;
+  //   result = str[rightMidIndex] + str[leftMidIndex];
+  //   loopLength = floor - 1;
+  // }
+  //
+  // for (var i = 1; i <= loopLength; i++) {
+  //   const beforeResult = str[rightMidIndex + i];
+  //   const afterResult = str[leftMidIndex - i];
+  //   result = beforeResult + result + afterResult;
+  // }
+  //
+  // return result;
 
   /* ==== SOLUTION TWO ==== */
   // loop through the string from end to start
@@ -60,13 +60,26 @@ function reverse(str) {
   // complexity: n
   // for better, complexity of n/2?
   // build the 2 halves of the string and concatenate at the end
-  // loop through half the length of the string
+  // loop through the floor of half the length of the string
   // for the left half, the needed character is the length of the
-  // string minus the iterator
-  // for the right half, the needed character is half length minus
-  // the iterator
+  // string minus the iterator - 1
+  // for the right half, the needed character is the floor of half
+  // length minus the iterator - 1
   // each of these get concatenated to their respective results
+  // after loop, add the mid char @ floor index if the length was odd
   // at the end the results are appended.
+  let leftSide = '',
+    rightSide = '';
+  const halfLength = str.length / 2;
+  const floor = Math.floor(halfLength);
+  for (var i = 0; i < floor; i++) {
+    leftSide += str[str.length - i - 1];
+    rightSide += str[floor - i - 1];
+  }
+  // append the middle character if length is odd
+  leftSide += floor < halfLength ? str[floor] : '';
+
+  return leftSide + rightSide;
 }
 
 module.exports = reverse;

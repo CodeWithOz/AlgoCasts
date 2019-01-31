@@ -8,6 +8,26 @@
 //   reverseInt(-15) === -51
 //   reverseInt(-90) === -9
 
-function reverseInt(n) {}
+const reverseStr = require('../reversestring');
+
+function reverseInt(n) {
+  // note if number if negative
+  const isNegative = n < 0;
+
+  // convert the number to a string
+  let numStr = String(n);
+
+  // remove negative sign if necessary
+  numStr = isNegative ? numStr.substring(1) : numStr;
+
+  // reverse the string
+  numStr = reverseStr(numStr);
+
+  // re-append negative sign if necessary
+  numStr = isNegative ? `-${numStr}` : numStr;
+
+  // convert to number and return
+  return Number(numStr);
+}
 
 module.exports = reverseInt;

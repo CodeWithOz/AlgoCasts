@@ -68,22 +68,22 @@ function reverse(str) {
   // each of these get concatenated to their respective results
   // after loop, add the mid char @ floor index if the length was odd
   // at the end the results are appended.
-  // let leftSide = '',
-  //   rightSide = '';
-  // const halfLength = str.length / 2;
-  // const floor = Math.floor(halfLength);
-  // for (var i = 0; i < floor; i++) {
-  //   leftSide += str[str.length - i - 1];
-  //   rightSide += str[floor - i - 1];
-  // }
-  // // append the middle character if length is odd
-  // leftSide += floor < halfLength ? str[floor] : '';
-  //
-  // return leftSide + rightSide;
+  let leftSide = '',
+    rightSide = '';
+  const halfLength = str.length / 2;
+  const floor = Math.floor(halfLength);
+  for (var i = 0; i < floor; i++) {
+    leftSide += str[str.length - i - 1];
+    rightSide += str[floor - i - 1];
+  }
+  // append the middle character if length is odd
+  leftSide += floor < halfLength ? str[floor] : '';
+
+  return leftSide + rightSide;
 
   /* ==== SOLUTION THREE ====*/
   // from Stephen
-  return str.split('').reduce((rev, char) => char + rev, '');
+  // return str.split('').reduce((rev, char) => char + rev, '');
 }
 
 module.exports = reverse;

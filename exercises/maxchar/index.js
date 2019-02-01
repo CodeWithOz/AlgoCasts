@@ -55,27 +55,42 @@ function maxChar(str) {
   // certain
   // I didn't account for all the lookups required at each step of
   // the iteration, so I'm not certain of my previous analysis.
-  const tracker = [],
-    charCounts = [];
-  let curCharIndex;
-  for (char of str) {
-    curCharIndex = tracker.indexOf(char);
-    if (curCharIndex < 0) {
-      // the char wasn't found
-      tracker.push(char);
-      charCounts.push({ char, count: 1 });
-    } else {
-      // the char was found
-      charCounts[curCharIndex].count++;
-    }
+  // const tracker = [],
+  //   charCounts = [];
+  // let curCharIndex;
+  // for (char of str) {
+  //   curCharIndex = tracker.indexOf(char);
+  //   if (curCharIndex < 0) {
+  //     // the char wasn't found
+  //     tracker.push(char);
+  //     charCounts.push({ char, count: 1 });
+  //   } else {
+  //     // the char was found
+  //     charCounts[curCharIndex].count++;
+  //   }
+  // }
+  //
+  // // find the max
+  // const maxChar = charCounts.reduce((maxCharObj, charObj) => {
+  //   return charObj.count > maxCharObj.count ? charObj : maxCharObj;
+  // });
+  //
+  // return maxChar.char;
+
+  // Stephen's solution
+  const chars = Object.create(null);
+  for (let char of str) {
+    chars[char] = chars[char] + 1 || 1;
   }
 
-  // find the max
-  const maxChar = charCounts.reduce((maxCharObj, charObj) => {
-    return charObj.count > maxCharObj.count ? charObj : maxCharObj;
-  });
+  let max;
+  for (let char in chars) {
+    // the inner condition always returns undefined
+    // at that point max must be set to char
+    max = (chars[char] > chars[max] ? char : max) || char;
+  }
 
-  return maxChar.char;
+  return max;
 }
 
 module.exports = maxChar;

@@ -26,7 +26,8 @@ function chunk(array, size) {
   // the current chunk
   // const chunks = [];
   // for (let i = 0; i < array.length; i++) {
-  //   // inner count explanation
+  //   // innerCount explanation
+  //   // essentially, innerCount must go from 1 to size
   //   // using modulo ensures that we stay within the
   //   // limits of size
   //   // but this makes innerCount 0 when innerCount

@@ -24,32 +24,48 @@ function chunk(array, size) {
   // chunk as given by length of original array - 1
   // else, the current value in the array is added to
   // the current chunk
-  const chunks = [];
-  for (let i = 0; i < array.length; i++) {
-    // inner count explanation
-    // using modulo ensures that we stay within the
-    // limits of size
-    // but this makes innerCount 0 when innerCount
-    // should be equal to size
-    // hence the || operator corrects this
-    const innerCount = (i + 1) % size || size;
-    if (innerCount === 1) chunks.push([]);
-    const indexOfCurrentChunk = chunks.length - 1;
-    const remSpace = size - innerCount;
-    const remElemsCanFitIntoChunk =
-      remSpace > 0 && array.length - 1 - i === remSpace;
-    if (remElemsCanFitIntoChunk) {
-      chunks[indexOfCurrentChunk].push(...array.slice(i));
-      break;
-    } else {
-      chunks[indexOfCurrentChunk].push(array[i]);
-    }
-  }
+  // const chunks = [];
+  // for (let i = 0; i < array.length; i++) {
+  //   // inner count explanation
+  //   // using modulo ensures that we stay within the
+  //   // limits of size
+  //   // but this makes innerCount 0 when innerCount
+  //   // should be equal to size
+  //   // hence the || operator corrects this
+  //   const innerCount = (i + 1) % size || size;
+  //   if (innerCount === 1) chunks.push([]);
+  //   const indexOfCurrentChunk = chunks.length - 1;
+  //   const remSpace = size - innerCount;
+  //   const remElemsCanFitIntoChunk =
+  //     remSpace > 0 && array.length - 1 - i === remSpace;
+  //   if (remElemsCanFitIntoChunk) {
+  //     chunks[indexOfCurrentChunk].push(...array.slice(i));
+  //     break;
+  //   } else {
+  //     chunks[indexOfCurrentChunk].push(array[i]);
+  //   }
+  // }
+  //
+  // return chunks;
 
-  return chunks;
+  // SOLUTION TWO
+  // progressively cut down the array into chunks
+  // according to size
+  // check if length of array is greater than size
+  // if it is, cut out size number of element and
+  // place in outer array
+  // if it's not, place everything in outer array
+  // .splice() method does exactly this
+  const result = [];
+
+  do {
+    result.push(array.splice(0, size));
+  } while (array.length > size);
+
+  // add the remaining piece if some values are left
+  if (array.length > 0) result.push(array.splice(0, size));
+
+  return result;
 }
-
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-chunk(arr, 2);
 
 module.exports = chunk;

@@ -57,16 +57,33 @@ function chunk(array, size) {
   // place in outer array
   // if it's not, place everything in outer array
   // .splice() method does exactly this
-  const result = [];
+  // const result = [];
+  //
+  // do {
+  //   result.push(array.splice(0, size));
+  // } while (array.length > size);
+  //
+  // // add the remaining piece if some values are left
+  // if (array.length > 0) result.push(array.splice(0, size));
+  //
+  // return result;
 
-  do {
-    result.push(array.splice(0, size));
-  } while (array.length > size);
+  // Stephen's first solution
+  // this is essentially a neater and more readable
+  // version of my first solution
+  const chunked = [];
 
-  // add the remaining piece if some values are left
-  if (array.length > 0) result.push(array.splice(0, size));
+  for (let element of array) {
+    const last = chunked[chunked.length - 1];
 
-  return result;
+    if (!last || last.length === size) {
+      chunked.push([element]);
+    } else {
+      last.push(element);
+    }
+  }
+
+  return chunked;
 }
 
 module.exports = chunk;

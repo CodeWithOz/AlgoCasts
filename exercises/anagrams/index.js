@@ -15,10 +15,11 @@ function anagrams(stringA, stringB) {
   // iterate through keys and exit if their values do
   // not match
   // return true at the end
-  const isLetter = char => char.search(/[a-z]/i) === 0;
+  const isLetter = char => char.search(/[a-z]/) === 0;
 
   const mapA = {};
   for (let char of stringA) {
+    char = char.toLowerCase();
     if (isLetter(char)) {
       mapA[char] = mapA[char] + 1 || 1;
     }
@@ -26,6 +27,7 @@ function anagrams(stringA, stringB) {
 
   const mapB = {};
   for (let char of stringB) {
+    char = char.toLowerCase();
     if (isLetter(char)) {
       mapB[char] = mapB[char] + 1 || 1;
     }

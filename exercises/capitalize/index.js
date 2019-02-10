@@ -25,17 +25,22 @@ function capitalize(str) {
   // is one letter)
   // this is better because it only matches the first character
   // after the word boundary
-  // const firstLetterRgx = /\b\w/g;
-  // return str.replace(firstLetterRgx, match => match.toUpperCase());
+  // JS parser defines word boundary as non-word char before or
+  // after word char
+  // so in 'one-liner' liner is a separate word
+  // we must define word boundary as space-separated, or if the
+  // word starts the string
+  const firstLetterRgx = /(^|\s+)\w/g;
+  return str.replace(firstLetterRgx, match => match.toUpperCase());
 
   // Stephen's first solution
-  const words = [];
-
-  for (let word of str.split(' ')) {
-    words.push(word[0].toUpperCase() + word.slice(1));
-  }
-
-  return words.join(' ');
+  // const words = [];
+  //
+  // for (let word of str.split(' ')) {
+  //   words.push(word[0].toUpperCase() + word.slice(1));
+  // }
+  //
+  // return words.join(' ');
 }
 
 module.exports = capitalize;

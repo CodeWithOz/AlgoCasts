@@ -30,8 +30,8 @@ function capitalize(str) {
   // so in 'one-liner' liner is a separate word
   // we must define word boundary as space-separated, or if the
   // word starts the string
-  const firstLetterRgx = /(^|\s+)\w/g;
-  return str.replace(firstLetterRgx, match => match.toUpperCase());
+  // const firstLetterRgx = /(^|\s+)\w/g;
+  // return str.replace(firstLetterRgx, match => match.toUpperCase());
 
   // Stephen's first solution
   // const words = [];
@@ -41,6 +41,19 @@ function capitalize(str) {
   // }
   //
   // return words.join(' ');
+
+  // Stephen's second solution
+  let result = str[0].toUpperCase();
+
+  for (let i = 1; i < str.length; i++) {
+    if (str[i - 1] === ' ') {
+      result += str[i].toUpperCase();
+    } else {
+      result += str[i];
+    }
+  }
+
+  return result;
 }
 
 module.exports = capitalize;

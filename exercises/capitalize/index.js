@@ -25,8 +25,17 @@ function capitalize(str) {
   // is one letter)
   // this is better because it only matches the first character
   // after the word boundary
-  const firstLetterRgx = /\b\w/g;
-  return str.replace(firstLetterRgx, match => match.toUpperCase());
+  // const firstLetterRgx = /\b\w/g;
+  // return str.replace(firstLetterRgx, match => match.toUpperCase());
+
+  // Stephen's first solution
+  const words = [];
+
+  for (let word of str.split(' ')) {
+    words.push(word[0].toUpperCase() + word.slice(1));
+  }
+
+  return words.join(' ');
 }
 
 module.exports = capitalize;

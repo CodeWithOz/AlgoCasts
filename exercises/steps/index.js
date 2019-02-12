@@ -23,19 +23,27 @@ function steps(n) {
   // for loop; i = 1, i <= n
   // at each step, repeat # i times then pad to n with spaces
   // log the outcome
-  for (var i = 1; i <= n; i++) {
-    console.log('#'.repeat(i).padEnd(n, ' '));
-  }
+  // for (var i = 1; i <= n; i++) {
+  //   console.log('#'.repeat(i).padEnd(n, ' '));
+  // }
 
   // SOLUTION TWO
   // recursive
-  // start from the front
+  // start from the front (cur pos = 1)
   // conditions to check
-  // n == 1: print only one line
-  // cur pos < n: append a line
-  // replace starting string if empty
-  // else, append
-  // cur pos == n: append last line and return
+  // cur pos < n: print the cur line, go to the next step
+  // cur pos == n: print last line
+  buildSteps(1, n);
+}
+
+function buildSteps(curPos, targetLength) {
+  if (curPos < targetLength) {
+    console.log('#'.repeat(curPos).padEnd(targetLength, ' '));
+    return buildSteps(curPos + 1, targetLength);
+  }
+  if (curPos === targetLength) {
+    return console.log('#'.repeat(curPos));
+  }
 }
 
 module.exports = steps;

@@ -17,7 +17,7 @@
 //       '### '
 //       '####'
 
-function steps(n) {
+function steps(n, row = 0, stair = '') {
   // SOLUTION ONE
   // loop from 1 to n, padding the string with spaces until n chars
   // for loop; i = 1, i <= n
@@ -36,17 +36,29 @@ function steps(n) {
   // buildSteps(1, n);
 
   // Stephen's first solution
-  for (let row = 0; row < n; row++) {
-    let stair = '';
+  // for (let row = 0; row < n; row++) {
+  //   let stair = '';
+  //
+  //   // process a row and create its string
+  //   for (let column = 0; column < n; column++) {
+  //     if (column <= row) stair += '#';
+  //     else stair += ' ';
+  //   }
+  //
+  //   console.log(stair);
+  // }
 
-    // process a row and create its string
-    for (let column = 0; column < n; column++) {
-      if (column <= row) stair += '#';
-      else stair += ' ';
-    }
+  // Stephen's second (recursive) solution
+  if (n === row) return;
 
+  if (n === stair.length) {
     console.log(stair);
+    return steps(n, row + 1);
   }
+
+  stair += stair.length <= row ? '#' : ' ';
+
+  steps(n, row, stair);
 }
 
 function buildSteps(curPos, targetLength) {

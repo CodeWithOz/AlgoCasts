@@ -33,7 +33,20 @@ function steps(n) {
   // conditions to check
   // cur pos < n: print the cur line, go to the next step
   // cur pos == n: print last line
-  buildSteps(1, n);
+  // buildSteps(1, n);
+
+  // Stephen's first solution
+  for (let row = 0; row < n; row++) {
+    let stair = '';
+
+    // process a row and create its string
+    for (let column = 0; column < n; column++) {
+      if (column <= row) stair += '#';
+      else stair += ' ';
+    }
+
+    console.log(stair);
+  }
 }
 
 function buildSteps(curPos, targetLength) {

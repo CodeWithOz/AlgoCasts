@@ -14,18 +14,34 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {
+function pyramid(n, i = 1, pyr = '#') {
   // SOLUTION ONE
-  let pyramid = '#';
+  // let pyramid = '#';
+  //
+  // if (n === 1) return pyramid;
+  //
+  // for (var i = 1; i <= n; i++) {
+  //   const extraHashes = pyramid.repeat(i - 1);
+  //   const extraSpaces = ' '.repeat(n - i);
+  //   console.log(
+  //     extraSpaces + extraHashes + pyramid + extraHashes + extraSpaces
+  //   );
+  // }
 
-  if (n === 1) return pyramid;
+  // SOLUTION TWO
+  if (n === 1) {
+    return console.log(pyr);
+  }
 
-  for (var i = 1; i <= n; i++) {
-    const extraHashes = pyramid.repeat(i - 1);
+  const extraHashes = '#'.repeat(i - 1);
+  if (i === n) {
+    return console.log(extraHashes + pyr + extraHashes);
+  }
+
+  if (i < n) {
     const extraSpaces = ' '.repeat(n - i);
-    console.log(
-      extraSpaces + extraHashes + pyramid + extraHashes + extraSpaces
-    );
+    console.log(extraSpaces + extraHashes + pyr + extraHashes + extraSpaces);
+    return pyramid(n, i + 1);
   }
 }
 

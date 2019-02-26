@@ -14,7 +14,7 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n, i = 1, pyr = '#') {
+function pyramid(n, i = 1) {
   // SOLUTION ONE
   // let pyramid = '#';
   //
@@ -29,19 +29,36 @@ function pyramid(n, i = 1, pyr = '#') {
   // }
 
   // SOLUTION TWO
-  if (n === 1) {
-    return console.log(pyr);
-  }
+  // if (n === 1) {
+  //   return console.log(pyr);
+  // }
+  //
+  // const extraHashes = '#'.repeat(i - 1);
+  // if (i === n) {
+  //   return console.log(extraHashes + pyr + extraHashes);
+  // }
+  //
+  // if (i < n) {
+  //   const extraSpaces = ' '.repeat(n - i);
+  //   console.log(extraSpaces + extraHashes + pyr + extraHashes + extraSpaces);
+  //   return pyramid(n, i + 1);
+  // }
 
-  const extraHashes = '#'.repeat(i - 1);
-  if (i === n) {
-    return console.log(extraHashes + pyr + extraHashes);
-  }
+  // SOLUTION THREE
+  if (n === 1) return '#';
 
-  if (i < n) {
-    const extraSpaces = ' '.repeat(n - i);
-    console.log(extraSpaces + extraHashes + pyr + extraHashes + extraSpaces);
-    return pyramid(n, i + 1);
+  let pyr = '';
+  for (let i = 1; i <= n; i++) {
+    if (i < n) {
+      if (i === 1) pyr = '#';
+      else {
+        pyr = '#' + pyr + '#';
+      }
+      const extraSpaces = ' '.repeat(n - i);
+      console.log(extraSpaces + pyr + extraSpaces);
+    } else {
+      console.log('#' + pyr + '#');
+    }
   }
 }
 

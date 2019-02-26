@@ -14,6 +14,19 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {}
+function pyramid(n) {
+  // SOLUTION ONE
+  let pyramid = '#';
+
+  if (n === 1) return pyramid;
+
+  for (var i = 1; i <= n; i++) {
+    const extraHashes = pyramid.repeat(i - 1);
+    const extraSpaces = ' '.repeat(n - i);
+    console.log(
+      extraSpaces + extraHashes + pyramid + extraHashes + extraSpaces
+    );
+  }
+}
 
 module.exports = pyramid;

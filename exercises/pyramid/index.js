@@ -14,7 +14,7 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n, i = 1) {
+function pyramid(n, i = 1, pyr = '#') {
   // SOLUTION ONE
   // let pyramid = '#';
   //
@@ -45,20 +45,37 @@ function pyramid(n, i = 1) {
   // }
 
   // SOLUTION THREE
-  if (n === 1) return '#';
+  // if (n === 1) return '#';
+  //
+  // let pyr = '';
+  // for (let i = 1; i <= n; i++) {
+  //   if (i < n) {
+  //     if (i === 1) pyr = '#';
+  //     else {
+  //       pyr = '#' + pyr + '#';
+  //     }
+  //     const extraSpaces = ' '.repeat(n - i);
+  //     console.log(extraSpaces + pyr + extraSpaces);
+  //   } else {
+  //     console.log('#' + pyr + '#');
+  //   }
+  // }
 
-  let pyr = '';
-  for (let i = 1; i <= n; i++) {
-    if (i < n) {
-      if (i === 1) pyr = '#';
-      else {
-        pyr = '#' + pyr + '#';
+  // Stephen's first solution
+  const cols = 2 * n - 1;
+  const midpoint = Math.floor(cols / 2);
+  for (let row = 0; row < n; row++) {
+    let level = '';
+
+    for (let column = 0; column < cols; column++) {
+      if (midpoint - row <= column && midpoint + row >= column) {
+        level += '#';
+      } else {
+        level += ' ';
       }
-      const extraSpaces = ' '.repeat(n - i);
-      console.log(extraSpaces + pyr + extraSpaces);
-    } else {
-      console.log('#' + pyr + '#');
     }
+
+    console.log(level);
   }
 }
 
